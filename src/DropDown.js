@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -23,11 +23,10 @@ let cont = ['pakistan', 'india', 'bangladesh', 'afghanistan']
 function DropDownMSearch() {
 
     const classes = useStyle();
-    let [countryName, setCountryName] = useState({
-        name : "",
-    });
     const handleChange = (event) => {
-        
+        console.log(event)
+        console.log(event.target.value)
+
     }
     return (
         <div>
@@ -35,8 +34,7 @@ function DropDownMSearch() {
             <InputLabel htmlFor="outlined-age-native-simple">Select Country</InputLabel>
                 <Select
                     native
-                    value={'Select Country'}
-                    onChange={'handleChange'}
+                    onChange={handleChange}
                     label="Select Country"
                     inputProps={{
                         name: 'age',
@@ -48,7 +46,7 @@ function DropDownMSearch() {
                         cont.map(
                             (obj, ind) => {
                                 return(
-                                <option value={obj}>{obj}</option>
+                                <option value={ind} key={ind}>{obj}</option>
                                 )
                             }
                         )
