@@ -1,6 +1,6 @@
 import React from 'react'
 import { Scatter } from "react-chartjs-2";
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Paper } from '@material-ui/core';
 
 
 const data = {
@@ -27,6 +27,14 @@ const data = {
           { x: 56, y: 36 },
           { x: 55, y: 25 },
           { x: 40, y: 18 },
+          { x: 59, y: 49 },
+          { x: 60, y: 90 },
+          { x: 61, y: 29 },
+          { x: 56, y: 36 },
+          { x: 59, y: 49 },
+          { x: 84, y: 90 },
+          { x: 511, y: 29 },
+          { x: 56, y: 36 },
         ]
       }
     ]
@@ -36,8 +44,10 @@ const useStyle = makeStyles(
     (theme) => (
         {
             root : {
-                width : theme.spacing(80),
-                height : theme.spacing(35),
+                width : theme.spacing(90),
+                height : theme.spacing(50),
+                padding : theme.spacing(2),
+                display : 'inline-block'
             },
         }
     )
@@ -48,10 +58,9 @@ function MyChart()
     let classes = useStyle()
 
     return(
-        <div className={classes.root}>
-        <h2>Scatter Example</h2>
+        <Paper className={classes.root}>
         <Scatter  data={data} />
-      </div>
+      </Paper>
     )
 }
 
