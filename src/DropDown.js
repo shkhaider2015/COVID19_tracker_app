@@ -22,11 +22,11 @@ const useStyle = makeStyles(
 
 let cont = ['pakistan', 'india', 'bangladesh', 'afghanistan']
 
-function DropDownMSearch() {
+function DropDownMSearch(props) {
 
     const classes = useStyle();
     const handleChange = (event) => {
-        console.log(event)
+        console.log("Change accours !!")
         console.log(event.target.value)
 
     }
@@ -46,10 +46,10 @@ function DropDownMSearch() {
                 >
                     <option value="" aria-label="None" />
                     {
-                        cont.map(
+                        props.value.map(
                             (obj, ind) => {
                                 return(
-                                <option value={ind} key={ind}>{obj}</option>
+                                <option value={ind} key={ind}>{obj.name}</option>
                                 )
                             }
                         )

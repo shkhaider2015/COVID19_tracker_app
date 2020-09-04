@@ -10,6 +10,15 @@ import Grid from "@material-ui/core/Grid";
 
 import { makeStyles } from '@material-ui/core';
 
+const reqBody = {
+  method : "GET",
+	headers : {
+		 "x-rapidapi-host" : "covid-19-data.p.rapidapi.com",
+		 "x-rapidapi-key" : "90438bb0femshca3a6f0182516b0p1de5c3jsn1d056092ee36"
+}}
+
+const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
+
 const useStyle = makeStyles(
   (theme) => (
     {
@@ -29,19 +38,17 @@ const useStyle = makeStyles(
 
 function App() {
   const classes = useStyle()
-  let [countries, setCountries] = useState([{}])
+  const [countries, setCountries] = useState([{}])
 
   useEffect(
     ()=> {
       async function getCountries()
       {
-        const url = 'https://api.covid19api.com/countries';
-        const response = await fetch(url);
+        const response = await fetch(countryNamesURL, reqBody);
         const data = await response.json()
         console.log(data)
         setCountries(data)
         console.log("----------------STATE----------------")
-        console.log(countries)
       }
 
       getCountries()
@@ -58,7 +65,7 @@ function App() {
 
         <Grid item xs={12} className={classes.grid}>
           
-            <DropDownMSearch />
+            <DropDownMSearch value={countries} />
           
         </Grid>
 
