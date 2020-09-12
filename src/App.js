@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import MyChart from "./MyChart";
 import DropDownMSearch from "./DropDown";
@@ -17,7 +17,7 @@ const reqBody = {
 		 "x-rapidapi-key" : "90438bb0femshca3a6f0182516b0p1de5c3jsn1d056092ee36"
 }}
 
-const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
+// const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
 
 const useStyle = makeStyles(
   (theme) => (
@@ -38,20 +38,20 @@ const useStyle = makeStyles(
 
 function App() {
   const classes = useStyle()
-  const [countries, setCountries] = useState([{}])
+  // const [countries, setCountries] = useState([{}])
 
   useEffect(
     ()=> {
-      async function getCountries()
-      {
-        const response = await fetch(countryNamesURL, reqBody);
-        const data = await response.json()
-        console.log(data)
-        setCountries(data)
-        console.log("----------------STATE----------------")
-      }
+      // async function getCountries()
+      // {
+      //   const response = await fetch(countryNamesURL, reqBody);
+      //   const data = await response.json()
+      //   console.log(data)
+      //   setCountries(data)
+      //   console.log("----------------STATE----------------")
+      // }
 
-      getCountries()
+      // getCountries()
       
     }, [])
 
@@ -65,7 +65,7 @@ function App() {
 
         <Grid item xs={12} className={classes.grid}>
           
-            <DropDownMSearch value={countries} />
+            <DropDownMSearch reqBody={reqBody} />
           
         </Grid>
 
