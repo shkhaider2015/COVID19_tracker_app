@@ -3,7 +3,7 @@ const CovidReducer = (
     {
         switch(action.type)
         {
-            case "a":
+            case "country":
                 {
                     return [action.payload, ...state]
                 }

@@ -5,17 +5,18 @@ import DropDownMSearch from "./DropDown";
 import MyBox from "./myBox";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-
+import { CountryProvider } from "./Context/CountryContext";
 
 
 import { makeStyles } from '@material-ui/core';
 
 const reqBody = {
-  method : "GET",
-	headers : {
-		 "x-rapidapi-host" : "covid-19-data.p.rapidapi.com",
-		 "x-rapidapi-key" : "90438bb0femshca3a6f0182516b0p1de5c3jsn1d056092ee36"
-}}
+  method: "GET",
+  headers: {
+    "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
+    "x-rapidapi-key": "90438bb0femshca3a6f0182516b0p1de5c3jsn1d056092ee36"
+  }
+}
 
 // const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
 
@@ -29,8 +30,8 @@ const useStyle = makeStyles(
       dropdownsearch: {
         margin: 'auto'
       },
-      grid : {
-        textAlign : 'center'
+      grid: {
+        textAlign: 'center'
       },
     }
   )
@@ -41,7 +42,7 @@ function App() {
   // const [countries, setCountries] = useState([{}])
 
   useEffect(
-    ()=> {
+    () => {
       // async function getCountries()
       // {
       //   const response = await fetch(countryNamesURL, reqBody);
@@ -52,38 +53,41 @@ function App() {
       // }
 
       // getCountries()
-      
+
     }, [])
 
   return (
     <Container
-     maxWidth='md'
-     className={classes.container}
-     >
+      maxWidth='md'
+      className={classes.container}
+    >
 
-      <Grid container spacing={8}>
+      <CountryProvider>
+        <Grid container spacing={8}>
 
-        <Grid item xs={12} className={classes.grid}>
-          
+          <Grid item xs={12} className={classes.grid}>
+
             <DropDownMSearch reqBody={reqBody} />
-          
-        </Grid>
 
-        <Grid item xs={4} className={classes.grid}>
-          <MyBox />
-        </Grid>
-        <Grid item xs={4} className={classes.grid} >
-          <MyBox />
-        </Grid>
-        <Grid item xs={4} className={classes.grid}>
-          <MyBox />
-        </Grid>
+          </Grid>
 
-        <Grid item xs={12} className={classes.grid} >
-          <MyChart />
-        </Grid>
+          <Grid item xs={4} className={classes.grid}>
+            <MyBox />
+          </Grid>
+          <Grid item xs={4} className={classes.grid} >
+            <MyBox />
+          </Grid>
+          <Grid item xs={4} className={classes.grid}>
+            <MyBox />
+          </Grid>
 
-      </Grid>
+          <Grid item xs={12} className={classes.grid} >
+            <MyChart />
+          </Grid>
+
+        </Grid>
+      </CountryProvider>
+
     </Container>
   );
 }

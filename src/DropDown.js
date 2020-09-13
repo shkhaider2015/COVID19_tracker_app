@@ -46,6 +46,9 @@ function DropDownMSearch(props) {
     const handleChange = (event) => {
         console.log("Change accours !!")
         console.log(event.target.value)
+        const country = countries[event.target.value]
+        console.log(country['name'])
+
 
     }
     return (
