@@ -3,7 +3,7 @@ import CountryReducer from "../Reducer/CountryReducer";
 
 
 const initialSelect = [
-    {countryName : 'Global'},
+    {countryName : ''},
 ]
 
 export const CountryContext = createContext(initialSelect);
@@ -12,12 +12,12 @@ export const CountryProvider = ({ children }) =>
 {
     let [state, dispatch] = useReducer(CountryReducer, initialSelect)
 
-    function selectCountry(CountryObject)
+    function selectCountry(countryName)
     {
         dispatch({
             type : "changeCountry",
             payload : {
-                countryName : CountryObject.countryName,
+                countryName : countryName,
             }
         })
     }

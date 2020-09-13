@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from '@material-ui/core';
+import { CountryContext } from "./Context/CountryContext";
 
 const useStyle = makeStyles(
     (theme) => ({
@@ -27,6 +28,7 @@ const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?for
 function DropDownMSearch(props) {
 
     const [countries, setCountries] = useState([{}])
+    let {country, selectCountry} = useContext(CountryContext)
     const requestBody = props.reqBody
 
     useEffect(
@@ -47,7 +49,12 @@ function DropDownMSearch(props) {
         console.log("Change accours !!")
         console.log(event.target.value)
         const country = countries[event.target.value]
-        console.log(country['name'])
+        const countryName = country['name']
+        console.log(countryName)
+
+        selectCountry({
+            countryName : countryName,
+        })
 
 
     }
