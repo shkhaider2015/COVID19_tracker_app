@@ -1,18 +1,18 @@
 const MyCountryReducer = (state, action) => 
 {
-    switch (action) 
+    
+    switch (action.type) 
     {
         case "updateCountry":
             {
-                if(state === "")
-                {
-                    console.log("No Country Select")
-                }
-                else
-                {
-                    console.log(state)
-                }
+                console.log("in updateCountry dispatch() ")
+                console.log("action.payload ", action.payload)
                 return;
+            }
+        case "getCountry":
+            {
+                console.log("in GetCountry() called")
+                return action.payload;
             }
         default:
             return state;

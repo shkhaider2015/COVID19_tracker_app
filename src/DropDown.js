@@ -30,7 +30,7 @@ function DropDownMSearch(props) {
 
     const [countries, setCountries] = useState([{}])
     // let {country, selectCountry} = useContext(CountryContext)
-    let [state, dispatch] = useReducer(MyCountryReducer, "")
+    // let [state, props.dispatch] = useReducer(MyCountryReducer, "")
     const requestBody = props.reqBody
 
     useEffect(
@@ -50,16 +50,16 @@ function DropDownMSearch(props) {
     const handleChange = (event) => {
         console.log("Change accours !!")
         // console.log(event.target.value)
-        // const country = countries[event.target.value]
-        // const countryName = country['name']
-        // console.log(countryName)
+        const country = countries[event.target.value]
+        var countryName = country['name']
+        console.log(countryName)
 
         // selectCountry({
         //     countryName : countryName,
         // })
-        dispatch("updateCountry")
+        props.handleSelectedCountry(countryName)
 
-
+        
     }
     return (
         <div>

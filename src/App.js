@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import './App.css';
 import MyChart from "./MyChart";
 import DropDownMSearch from "./DropDown";
@@ -6,6 +6,7 @@ import MyBox from "./myBox";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { CountryProvider, CountryContext } from "./Context/CountryContext";
+import MyCountryReducer from "./Reducer/MyCountryReducer";
 
 
 import { makeStyles } from '@material-ui/core';
@@ -37,11 +38,17 @@ const useStyle = makeStyles(
   )
 )
 
+
 function App() {
   const classes = useStyle()
-  // const [countries, setCountries] = useState([{}])
-  // const countryCTX = useContext(CountryContext)
+  const [selectedCountry, setSelectedCountry] = useState("global")
   
+
+  const handleSelectedCountry = (countryName) =>
+  {
+    setSelectedCountry(countryName)
+    console.log("Country Name is : ", selectedCountry)
+  }
 
   useEffect(
     () => {
@@ -61,6 +68,8 @@ function App() {
 
     }, [])
 
+    
+
   return (
     <Container
       maxWidth='md'
@@ -72,7 +81,7 @@ function App() {
 
           <Grid item xs={12} className={classes.grid}>
 
-            <DropDownMSearch reqBody={reqBody} />
+            <DropDownMSearch reqBody={reqBody} handleSelectedCountry={handleSelectedCountry} />
 
           </Grid>
 
