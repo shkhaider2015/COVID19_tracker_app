@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 import MyChart from "./MyChart";
 import DropDownMSearch from "./DropDown";
 import MyBox from "./myBox";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import { CountryProvider } from "./Context/CountryContext";
+import { CountryProvider, CountryContext } from "./Context/CountryContext";
 
 
 import { makeStyles } from '@material-ui/core';
@@ -40,6 +40,8 @@ const useStyle = makeStyles(
 function App() {
   const classes = useStyle()
   // const [countries, setCountries] = useState([{}])
+  // const countryCTX = useContext(CountryContext)
+  
 
   useEffect(
     () => {
@@ -53,6 +55,9 @@ function App() {
       // }
 
       // getCountries()
+      console.log("App.js / UseEffect() --> ")
+      console.log()
+      
 
     }, [])
 
@@ -80,6 +85,7 @@ function App() {
           <Grid item xs={4} className={classes.grid}>
             <MyBox />
           </Grid>
+          
 
           <Grid item xs={12} className={classes.grid} >
             <MyChart />
