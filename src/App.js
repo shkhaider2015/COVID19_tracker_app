@@ -20,6 +20,11 @@ const reqBody = {
 }
 
 // const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
+const totalUrl = "https://covid-19-data.p.rapidapi.com/totals?format=json";
+const countryByNameURL = "https://covid-19-data.p.rapidapi.com/country?format=json&name=";
+const infected = 0;
+const death = 0;
+const recover = 0;
 
 const useStyle = makeStyles(
   (theme) => (
@@ -52,20 +57,33 @@ function App() {
 
   useEffect(
     () => {
-      // async function getCountries()
-      // {
-      //   const response = await fetch(countryNamesURL, reqBody);
-      //   const data = await response.json()
-      //   console.log(data)
-      //   setCountries(data)
-      //   console.log("----------------STATE----------------")
-      // }
+      async function getData()
+      {
+        var url = null;
 
-      // getCountries()
-      console.log("App.js / UseEffect() --> ")
-      console.log()
-      
+        if (selectedCountry === "global")
+        {
+          console.log("Url is global")
+          url = totalUrl;
+        }
+        else
+        {
+          console.log("Url is countryByName")
+          url = countryByNameURL + selectedCountry;
+        }
 
+        if(url == null)
+        {
+          console.log("Url is null")
+          return;
+        }
+
+        const response = await fetch(url, reqBody);
+        const data = await response.json()
+        console.log(data)
+      }
+
+      getData()
     }, [])
 
     

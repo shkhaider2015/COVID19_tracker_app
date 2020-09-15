@@ -29,8 +29,6 @@ const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?for
 function DropDownMSearch(props) {
 
     const [countries, setCountries] = useState([{}])
-    // let {country, selectCountry} = useContext(CountryContext)
-    // let [state, props.dispatch] = useReducer(MyCountryReducer, "")
     const requestBody = props.reqBody
 
     useEffect(
