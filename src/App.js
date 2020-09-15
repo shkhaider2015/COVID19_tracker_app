@@ -22,9 +22,9 @@ const reqBody = {
 // const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
 const totalUrl = "https://covid-19-data.p.rapidapi.com/totals?format=json";
 const countryByNameURL = "https://covid-19-data.p.rapidapi.com/country?format=json&name=";
-const infected = 0;
-const death = 0;
-const recover = 0;
+var infected = 0;
+var death = 0;
+var recover = 0;
 
 const useStyle = makeStyles(
   (theme) => (
@@ -47,19 +47,21 @@ const useStyle = makeStyles(
 function App() {
   const classes = useStyle()
   const [selectedCountry, setSelectedCountry] = useState("global")
+  var [infected, setInfected] = useState(0)
+  var [deaths, setDeaths] = useState(0)
+  var [recover, setRecover] = useState(0)
   
 
   const handleSelectedCountry = (countryName) =>
   {
     setSelectedCountry(countryName)
     console.log("Country Name is : ", selectedCountry)
+    getData()
   }
 
-  useEffect(
-    () => {
-      async function getData()
-      {
-        var url = null;
+  async function getData()
+  {
+    var url = null;
 
         if (selectedCountry === "global")
         {
@@ -80,13 +82,19 @@ function App() {
 
         const response = await fetch(url, reqBody);
         const data = await response.json()
-        console.log(data)
-      }
-
-      getData()
-    }, [])
-
+        const data1 = data[0];
+        setInfected(data1['confirmed']) 
+        setDeaths(data1['deaths'])
+        setRecover(data1['recovered'])
+        console.log("infected", infected)
+  }
     
+  useEffect(
+    () => {
+
+         getData()
+    }, []
+)
 
   return (
     <Container
@@ -99,23 +107,23 @@ function App() {
 
           <Grid item xs={12} className={classes.grid}>
 
-            <DropDownMSearch reqBody={reqBody} handleSelectedCountry={handleSelectedCountry} />
+            <DropDownMSearch reqBody={reqBody} handleSelectedCountry={handleSelectedCountry}  />
 
           </Grid>
 
-          <Grid item xs={4} className={classes.grid}>
-            <MyBox />
-          </Grid>
           <Grid item xs={4} className={classes.grid} >
-            <MyBox />
+            <MyBox cases={infected} />
+          </Grid>
+          <Grid item xs={4} className={classes.grid}  >
+            <MyBox cases={deaths} />
           </Grid>
           <Grid item xs={4} className={classes.grid}>
-            <MyBox />
+            <MyBox cases={recover} />
           </Grid>
           
 
           <Grid item xs={12} className={classes.grid} >
-            <MyChart />
+            <MyChart selectedCountry={selectedCountry} />
           </Grid>
 
         </Grid>

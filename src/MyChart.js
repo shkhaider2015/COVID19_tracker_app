@@ -53,13 +53,14 @@ const useStyle = makeStyles(
     )
 )
 
-function MyChart()
+function MyChart(props)
 {
     let classes = useStyle()
 
     return(
         <Paper className={classes.root}>
-        <Scatter  data={data} />
+          <h5>{props.selectedCountry}</h5>
+          <Scatter  data={data} />
       </Paper>
     )
 }

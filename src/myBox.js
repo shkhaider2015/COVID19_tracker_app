@@ -21,7 +21,7 @@ const useStyle = makeStyles(
     )
 );
 
-function MyBox()
+function MyBox(props)
 {
     const classes = useStyle();
 
@@ -32,7 +32,7 @@ function MyBox()
         >
             <div className={classes.text}>
             <h3>Infected</h3>
-            <h1>18,000</h1>
+            <h1>{props.cases}</h1>
             </div>
         </Box>
     )
