@@ -46,7 +46,7 @@ const useStyle = makeStyles(
 
 function App() {
   const classes = useStyle()
-  const [selectedCountry, setSelectedCountry] = useState("global")
+  var [selectedCountry, setSelectedCountry] = useState("global")
   var [infected, setInfected] = useState(0)
   var [deaths, setDeaths] = useState(0)
   var [recover, setRecover] = useState(0)
@@ -54,6 +54,7 @@ function App() {
 
   const handleSelectedCountry = (countryName) =>
   {
+    console.log("Comes here : ", countryName)
     setSelectedCountry(countryName)
     console.log("Country Name is : ", selectedCountry)
     getData()
@@ -62,6 +63,7 @@ function App() {
   async function getData()
   {
     var url = null;
+    console.log("Now Country name is : ", selectedCountry)
 
         if (selectedCountry === "global")
         {
