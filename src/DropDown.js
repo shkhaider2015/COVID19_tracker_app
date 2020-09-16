@@ -46,11 +46,17 @@ function DropDownMSearch(props) {
         }, []
     )
     const classes = useStyle();
-    
+
     const handleChange = (event) => {
         console.log("Change accours !!")
+        let country = null;
         // console.log(event.target.value)
-        const country = countries[event.target.value]
+        country = countries[event.target.value]
+        if(country == null)
+        {
+            country = {name : 'global'}
+        }
+        console.log("Checking .... empty",country)
         var countryName = country['name']
         console.log(countryName)
 
@@ -58,6 +64,8 @@ function DropDownMSearch(props) {
         //     countryName : countryName,
         // })
         props.handleSelectedCountry(countryName)
+        
+        console.log()
 
         
     }

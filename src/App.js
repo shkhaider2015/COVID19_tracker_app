@@ -46,18 +46,19 @@ const useStyle = makeStyles(
 
 function App() {
   const classes = useStyle()
-  var [selectedCountry, setSelectedCountry] = useState("global")
-  var [infected, setInfected] = useState(0)
-  var [deaths, setDeaths] = useState(0)
-  var [recover, setRecover] = useState(0)
+  let [selectedCountry, setSelectedCountry] = useState("global")
+  let [infected, setInfected] = useState(0)
+  let [deaths, setDeaths] = useState(0)
+  let [recover, setRecover] = useState(0)
   
 
   const handleSelectedCountry = (countryName) =>
   {
     console.log("Comes here : ", countryName)
     setSelectedCountry(countryName)
+    
     console.log("Country Name is : ", selectedCountry)
-    getData()
+    console.log("App --> selectedCountry is --> : ", selectedCountry)
   }
 
   async function getData()
@@ -90,11 +91,11 @@ function App() {
         setRecover(data1['recovered'])
         console.log("infected", infected)
   }
-    
+  
   useEffect(
     () => {
-
-         getData()
+      console.log("useEffect() runs !!")
+      getData()
     }, []
 )
 
