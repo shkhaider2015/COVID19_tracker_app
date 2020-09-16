@@ -59,7 +59,7 @@ function MyChart(props)
 
     return(
         <Paper className={classes.root}>
-          <h5>{props.selectedCountry}</h5>
+          <h5>{props.selectedCountry.toUpperCase()}</h5>
           <Scatter  data={data} />
       </Paper>
     )

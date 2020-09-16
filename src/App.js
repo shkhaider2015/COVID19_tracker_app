@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import './App.css';
 import MyChart from "./MyChart";
+import LineChart from './LineChart'
 import DropDownMSearch from "./DropDown";
 import MyBox from "./myBox";
 import Container from "@material-ui/core/Container";
@@ -125,9 +126,8 @@ function App() {
           
 
           <Grid item xs={12} className={classes.grid} >
-            <MyChart selectedCountry={selectedCountry} />
+            <LineChart selectedCountry={selectedCountry} />
           </Grid>
-
         </Grid>
       </CountryProvider>
 
