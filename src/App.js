@@ -115,13 +115,13 @@ function App() {
           </Grid>
 
           <Grid item xs={4} className={classes.grid} >
-            <MyBox cases={infected} />
+            <MyBox cases={infected} title={"Infected"} bgColor={1} />
           </Grid>
           <Grid item xs={4} className={classes.grid}  >
-            <MyBox cases={deaths} />
+            <MyBox cases={deaths} title={"Deaths"} bgColor={2} />
           </Grid>
           <Grid item xs={4} className={classes.grid}>
-            <MyBox cases={recover} />
+            <MyBox cases={recover} title={"Recovered"} bgColor={3} />
           </Grid>
           
 
