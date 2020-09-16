@@ -56,7 +56,6 @@ function App() {
   {
     console.log("Comes here : ", countryName)
     setSelectedCountry(countryName)
-    
     console.log("Country Name is : ", selectedCountry)
     console.log("App --> selectedCountry is --> : ", selectedCountry)
   }
@@ -85,18 +84,18 @@ function App() {
 
         const response = await fetch(url, reqBody);
         const data = await response.json()
-        const data1 = data[0];
+        const data1 = await data[0];
+        
         setInfected(data1['confirmed']) 
         setDeaths(data1['deaths'])
         setRecover(data1['recovered'])
-        console.log("infected", infected)
   }
   
   useEffect(
     () => {
       console.log("useEffect() runs !!")
       getData()
-    }, []
+    }, [selectedCountry]
 )
 
   return (
