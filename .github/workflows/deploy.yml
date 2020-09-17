@@ -30,7 +30,7 @@ jobs:
 
            
       - name: installing Surge
-        run: 
+        run: |
           npm install --global surge,
           surge ./shkhaider_covid19_tracker_app.surge.sh --token $ {{ secrets.SURGE_TOKEN }}
       # Runs a set of commands using the runners shell
