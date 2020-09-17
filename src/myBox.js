@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Box from "@material-ui/core/Box";
-import { colors, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import CountUp from 'react-countup';
 
 

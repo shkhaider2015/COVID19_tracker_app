@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import MyChart from "./MyChart";
-import LineChart from './LineChart'
+import BarChart from './BarChart'
 import DropDownMSearch from "./DropDown";
 import MyBox from "./myBox";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import { CountryProvider, CountryContext } from "./Context/CountryContext";
-import MyCountryReducer from "./Reducer/MyCountryReducer";
+import { CountryProvider } from "./Context/CountryContext";
 
 
 import { makeStyles } from '@material-ui/core';
@@ -23,9 +21,6 @@ const reqBody = {
 // const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
 const totalUrl = "https://covid-19-data.p.rapidapi.com/totals?format=json";
 const countryByNameURL = "https://covid-19-data.p.rapidapi.com/country?format=json&name=";
-var infected = 0;
-var death = 0;
-var recover = 0;
 
 const useStyle = makeStyles(
   (theme) => (
@@ -51,20 +46,17 @@ function App() {
   let [infected, setInfected] = useState(0)
   let [deaths, setDeaths] = useState(0)
   let [recover, setRecover] = useState(0)
+  let [critical, setCritical] = useState(0)
   
 
   const handleSelectedCountry = (countryName) =>
   {
-    console.log("Comes here : ", countryName)
     setSelectedCountry(countryName)
-    console.log("Country Name is : ", selectedCountry)
-    console.log("App --> selectedCountry is --> : ", selectedCountry)
   }
 
   async function getData()
   {
     var url = null;
-    console.log("Now Country name is : ", selectedCountry)
 
         if (selectedCountry === "global")
         {
@@ -90,11 +82,11 @@ function App() {
         setInfected(data1['confirmed']) 
         setDeaths(data1['deaths'])
         setRecover(data1['recovered'])
+        setCritical(data1['critical'])
   }
   
   useEffect(
     () => {
-      console.log("useEffect() runs !!")
       getData()
     }, [selectedCountry]
 )
@@ -114,19 +106,19 @@ function App() {
 
           </Grid>
 
-          <Grid item xs={4} className={classes.grid} >
+          <Grid item lg={4} md={4} sm={4} xs={12} className={classes.grid} >
             <MyBox cases={infected} title={"Infected"} bgColor={1} />
           </Grid>
-          <Grid item xs={4} className={classes.grid}  >
+          <Grid item lg={4} md={4} sm={4} xs={12} className={classes.grid}  >
             <MyBox cases={deaths} title={"Deaths"} bgColor={2} />
           </Grid>
-          <Grid item xs={4} className={classes.grid}>
+          <Grid item lg={4} md={4} sm={4} xs={12} className={classes.grid}>
             <MyBox cases={recover} title={"Recovered"} bgColor={3} />
           </Grid>
           
 
-          <Grid item xs={12} className={classes.grid} >
-            <LineChart selectedCountry={selectedCountry} />
+          <Grid item lg={12} md={12} sm={0} xs={0} className={classes.grid} >
+            <BarChart selectedCountry={selectedCountry} mydata={{1 : infected, 2 : recover, 3 : critical, 4 : deaths}} />
           </Grid>
         </Grid>
       </CountryProvider>

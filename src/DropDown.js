@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from '@material-ui/core';
-import { CountryContext } from "./Context/CountryContext";
-import  MyCountryReducer  from "./Reducer/MyCountryReducer";
 
 const useStyle = makeStyles(
     (theme) => ({
@@ -22,7 +20,6 @@ const useStyle = makeStyles(
 
 
 
-let cont = ['pakistan', 'india', 'bangladesh', 'afghanistan']
 const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
 
 
@@ -38,36 +35,26 @@ function DropDownMSearch(props) {
                 const data = await response.json()
                 console.log(data)
                 setCountries(data)
-                console.log("----------------STATE----------------")
             }
-            
 
-            setTimeout(()=> {getCountries()}, 3000)
+            setTimeout(() => { getCountries() }, 1000)
         }, []
     )
     const classes = useStyle();
 
     const handleChange = (event) => {
-        console.log("Change accours !!")
         let country = null;
-        // console.log(event.target.value)
         country = countries[event.target.value]
-        if(country == null)
-        {
-            country = {name : 'global'}
+
+        if (country == null) {
+            country = { name: 'global' }
         }
-        console.log("Checking .... empty",country)
+
         var countryName = country['name']
-        console.log(countryName)
-
-        // selectCountry({
-        //     countryName : countryName,
-        // })
         props.handleSelectedCountry(countryName)
-        
-        console.log()
 
-        
+
+
     }
     return (
         <div>
@@ -85,13 +72,18 @@ function DropDownMSearch(props) {
                 >
                     <option value="" aria-label="None" />
                     {
-                        countries.map(
-                            (obj, ind) => {
-                                return (
-                                    <option value={ind} key={ind}>{obj.name}</option>
+                        () => {
+                            if (countries) {
+                                countries.map(
+                                    (obj, ind) => {
+                                        return (
+                                            <option value={ind} key={ind}>{obj.name}</option>
+                                        )
+                                    }
                                 )
                             }
-                        )
+                        }
+
                     }
                 </Select>
                 <FormHelperText></FormHelperText>
