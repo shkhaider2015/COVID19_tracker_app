@@ -69,4 +69,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ### Serge URL
-shkhaider_covid19_tracker_app.sh
+shkhaider_covid19_tracker_app.surge.sh
