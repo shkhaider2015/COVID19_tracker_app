@@ -18,7 +18,6 @@ const reqBody = {
   }
 }
 
-// const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
 const totalUrl = "https://covid-19-data.p.rapidapi.com/totals?format=json";
 const countryByNameURL = "https://covid-19-data.p.rapidapi.com/country?format=json&name=";
 
@@ -54,9 +53,13 @@ function App() {
     setSelectedCountry(countryName)
   }
 
-  async function getData()
-  {
-    var url = null;
+
+  
+  useEffect(
+    () => {
+      async function getData()
+      {
+        var url = null;
 
         if (selectedCountry === "global")
         {
@@ -83,10 +86,7 @@ function App() {
         setDeaths(data1['deaths'])
         setRecover(data1['recovered'])
         setCritical(data1['critical'])
-  }
-  
-  useEffect(
-    () => {
+      }
       getData()
     }, [selectedCountry]
 )
@@ -102,7 +102,7 @@ function App() {
 
           <Grid item xs={12} className={classes.grid}>
 
-            <DropDownMSearch reqBody={reqBody} handleSelectedCountry={handleSelectedCountry}  />
+            <DropDownMSearch handleSelectedCountry={handleSelectedCountry}  />
 
           </Grid>
 
@@ -117,7 +117,7 @@ function App() {
           </Grid>
           
 
-          <Grid item lg={12} md={12} sm={0} xs={0} className={classes.grid} >
+          <Grid item lg={12} md={12} sm={12} className={classes.grid} >
             <BarChart selectedCountry={selectedCountry} mydata={{1 : infected, 2 : recover, 3 : critical, 4 : deaths}} />
           </Grid>
         </Grid>

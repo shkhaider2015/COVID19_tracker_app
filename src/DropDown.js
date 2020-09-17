@@ -17,7 +17,13 @@ const useStyle = makeStyles(
         },
     })
 )
-
+const reqBody = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
+      "x-rapidapi-key": "90438bb0femshca3a6f0182516b0p1de5c3jsn1d056092ee36"
+    }
+  }
 
 
 const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?format=json"
@@ -30,12 +36,12 @@ function DropDownMSearch(props) {
     useEffect(
         () => {
             async function getCountries() {
-                const response = await fetch(countryNamesURL, props.reqBody);
+                const response = await fetch(countryNamesURL, reqBody);
                 const data = await response.json()
                 setCountries(data)
             }
 
-            setTimeout(() => { getCountries() }, 1000)
+            setTimeout(() => { getCountries() }, 2000)
         }, []
     )
     const classes = useStyle();
@@ -70,17 +76,13 @@ function DropDownMSearch(props) {
                 >
                     <option value="" aria-label="None" />
                     {
-                        () => {
-                            if (countries) {
-                                countries.map(
-                                    (obj, ind) => {
-                                        return (
-                                            <option value={ind} key={ind}>{obj.name}</option>
-                                        )
-                                    }
+                        countries.map(
+                            (obj, ind) => {
+                                return (
+                                    <option value={ind} key={ind}>{obj.name}</option>
                                 )
                             }
-                        }
+                        )
 
                     }
                 </Select>
