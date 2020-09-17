@@ -41,7 +41,7 @@ function BarChart(props)
     const classes = useStyle()
     return (
         <Paper className={classes.root}>
-          <span>{props.selectedCountry.toUpperCase()}</span>
+          <span>checking actions ..</span>
           <Bar
           data={getData(props.mydata[1], props.mydata[2], props.mydata[3], props.mydata[4])}
           options={{
