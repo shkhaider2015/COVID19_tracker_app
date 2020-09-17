@@ -26,14 +26,12 @@ const countryNamesURL = "https://covid-19-data.p.rapidapi.com/help/countries?for
 function DropDownMSearch(props) {
 
     const [countries, setCountries] = useState([{}])
-    const requestBody = props.reqBody
 
     useEffect(
         () => {
             async function getCountries() {
-                const response = await fetch(countryNamesURL, requestBody);
+                const response = await fetch(countryNamesURL, props.reqBody);
                 const data = await response.json()
-                console.log(data)
                 setCountries(data)
             }
 
