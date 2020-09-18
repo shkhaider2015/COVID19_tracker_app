@@ -36,7 +36,7 @@ const useStyle = makeStyles(
 function getColor(x)
 {
     let colors = {
-        1 : 'rgb(214, 189, 2)',
+        1 : 'rgb(255, 133, 51)',
         2 : 'rgb(214, 2, 2)',
         3 : 'rgb(2, 214, 59)',
     }
