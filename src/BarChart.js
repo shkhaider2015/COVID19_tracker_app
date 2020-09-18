@@ -27,10 +27,11 @@ const useStyle = makeStyles(
     (theme) => (
         {
             root : {
-                width : theme.spacing(90),
-                height : theme.spacing(50),
+                width : '90%',
+                height : '100%',
                 padding : theme.spacing(2),
-                display : 'inline-block'
+                display : 'inline-block',
+                position : "relative",
             },
         }
     )
@@ -45,7 +46,8 @@ function BarChart(props)
           <Bar
           data={getData(props.mydata[1], props.mydata[2], props.mydata[3], props.mydata[4])}
           options={{
-            maintainAspectRatio: false
+            responsive : true,
+            maintainAspectRatio: true
           }}
         />
         </Paper>

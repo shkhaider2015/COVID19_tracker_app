@@ -117,7 +117,7 @@ function App() {
           </Grid>
           
 
-          <Grid item lg={12} md={12} sm={12} className={classes.grid} >
+          <Grid item lg={12} md={12} sm={12} xs={12} className={classes.grid} >
             <BarChart selectedCountry={selectedCountry} mydata={{1 : infected, 2 : recover, 3 : critical, 4 : deaths}} />
           </Grid>
         </Grid>
