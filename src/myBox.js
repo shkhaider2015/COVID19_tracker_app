@@ -60,7 +60,7 @@ function MyBox(props)
         >
             <div className={classes.text}>
             <h3>{props.title}</h3>
-            <h1> <CountUp end={props.cases} /> </h1>
+            <h1> <CountUp end={props.cases} duration={4} /> </h1>
             </div>
 
             <div className={classes.hr} style={{backgroundColor : getColor(props.bgColor)}} >

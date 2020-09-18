@@ -41,7 +41,7 @@ function DropDownMSearch(props) {
                 setCountries(data)
             }
 
-            setTimeout(() => { getCountries() }, 2000)
+            setTimeout(() => { getCountries() }, 3000)
         }, []
     )
     const classes = useStyle();
